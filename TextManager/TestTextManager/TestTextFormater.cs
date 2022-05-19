@@ -17,7 +17,23 @@ namespace TestTextManager
 
         #region Single Sentence
         [Test]
-        public void T001_Reverse_NominalCase_Success()
+        public void T001_NominalCase_Success()
+        {
+            //given
+            string sentenceToReverse = "Il faut agir aussi vite que possible.";
+            string expectedResult = "Possible que vite aussi agir faut il.";
+            string actualResult;
+
+            //when
+            actualResult = (this.textFormater.Reverse(sentenceToReverse));
+
+            //then
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+
+        [Test]
+        public void T002_Reverse_SingleComa_Success()
         {
             //given
             string sentenceToReverse = "Il faut agir aussi vite que possible, mais aussi lentement que nécessaire.";
@@ -32,7 +48,7 @@ namespace TestTextManager
         }
 
         [Test]
-        public void T002_Reverse_MultipleUpperCase_Success()
+        public void T003_Reverse_MultipleUpperCase_Success()
         {
             //Add word with UpperCase in the middle of sentence
             //Multiple comas
@@ -50,7 +66,7 @@ namespace TestTextManager
         }
 
         [Test]
-        public void T003_Reverse_MultipleComa_Success()
+        public void T004_Reverse_MultipleComa_Success()
         {
             //Add word with UpperCase in the middle of sentence
             //Multiple comas
@@ -70,7 +86,7 @@ namespace TestTextManager
 
         #region Multiple Sentences
         [Test]
-        public void T004_Reverse_MultipleSentence_Success()
+        public void T005_Reverse_MultipleSentence_Success()
         {
             //given
             string sentenceToReverse = "Il faut agir aussi vite que possible, mais aussi lentement que nécessaire. Il faut agir aussi vite que possible, mais aussi lentement que nécessaire.";
@@ -86,7 +102,7 @@ namespace TestTextManager
         #endregion Multiple Sentences
 
         [Test]
-        public void T005_Reverse_UltimateTest_Success()
+        public void T006_Reverse_UltimateTest_Success()
         {
             //Add word with UpperCase in the middle of sentence
             //Multiple comas
