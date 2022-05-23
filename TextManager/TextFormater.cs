@@ -11,10 +11,34 @@ namespace TextManager
             textToReverse = Format(textToReverse, true);
             //Reverse sentence
             string[] splitted = textToReverse.Split(" ");
+
+            int comma = -1;
+            for (int i = 0; i < splitted.Length; i++)
+            {
+                if (splitted[i].Contains(","))
+                {
+                    comma = i;
+                    splitted[i] = splitted[i].Remove(splitted[i].Length - 1, 1);
+                }
+            }
+
             string empty = "";
             for (int i = splitted.Length -1; i >= 0; i--)
             {
-                empty += splitted[i] + " ";
+                if(comma != -1) {
+                    if (i == comma + 1)
+                    {
+                        empty += splitted[i] + ", ";
+                    }
+                    else
+                    {
+                        empty += splitted[i] + " ";
+                    }
+                }
+                else
+                {
+                    empty += splitted[i] + " ";
+                }
             }
             empty = Format(empty, false);
             return empty;
