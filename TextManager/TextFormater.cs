@@ -11,13 +11,18 @@ namespace TextManager
             textToReverse = Format(textToReverse, true);
             //Reverse sentence
             string[] splitted = textToReverse.Split(" ");
-            string[] comm = new string[splitted.Length];
-            int comma = -1;
+            string[] punctuation = new string[splitted.Length];
             for (int i = 0; i < splitted.Length; i++)
             {
                 if (splitted[i].Contains(","))
                 {
-                    comm[i + 1] = ",";
+                    punctuation[i + 1] = ",";
+                    splitted[i] = splitted[i].Remove(splitted[i].Length - 1, 1);
+                }
+                if (splitted[i].Contains("."))
+                {
+                    punctuation[i + 1] = ".";
+                    splitted[i] = Format(splitted[i], false);
                     splitted[i] = splitted[i].Remove(splitted[i].Length - 1, 1);
                 }
             }
@@ -25,7 +30,11 @@ namespace TextManager
             string empty = "";
             for (int i = splitted.Length -1; i >= 0; i--)
             {
-                empty += splitted[i] + comm[i] + " ";
+                if (punctuation[i] == ".")
+                {
+                    splitted[i] = Format(splitted[i] + " ", true);
+                }
+                empty += splitted[i] + punctuation[i] + " ";
             }
             empty = Format(empty, false);
             return empty;
