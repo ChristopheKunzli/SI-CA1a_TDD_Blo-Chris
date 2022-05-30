@@ -54,7 +54,8 @@ namespace TextManager
             {
                 //Remove last dot, everything to lowerCase
                 toFormat = toFormat.Remove(toFormat.Length - 1, 1);
-                toFormat = toFormat.ToLower();
+                toFormat = char.ToLower(toFormat[0]) + toFormat;
+                toFormat = toFormat.Remove(1, 1);
             }
             else
             {
