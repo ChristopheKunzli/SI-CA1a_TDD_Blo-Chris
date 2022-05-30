@@ -25,6 +25,7 @@ namespace TextManager
             string empty = "";
             for (int i = splitted.Length -1; i >= 0; i--)
             {
+                //If a commma has been found
                 if(comma != -1) {
                     if (i == comma + 1)
                     {
@@ -35,6 +36,7 @@ namespace TextManager
                         empty += splitted[i] + " ";
                     }
                 }
+                //If no comma was found
                 else
                 {
                     empty += splitted[i] + " ";
@@ -50,7 +52,7 @@ namespace TextManager
         {
             if (lower)
             {
-                //Format
+                //Remove last dot, everything to lowerCase
                 toFormat = toFormat.Remove(toFormat.Length - 1, 1);
                 toFormat = toFormat.ToLower();
             }
@@ -61,7 +63,7 @@ namespace TextManager
                 //Add first letter capitalized
                 toFormat = char.ToUpper(toFormat[0]) + toFormat;
                 toFormat = toFormat.Remove(1, 1);
-                //Add dot at the end of the sentence
+                //Append dot
                 toFormat += ".";
             }
             return toFormat;
