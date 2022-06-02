@@ -5,24 +5,40 @@ namespace TextManager
 {
     public class TextFormater
     {
+        #region private attributes
+        private List<char> punctuations = new List<char>{ '.', ',' };
+        #endregion private attributes
+
+
         #region public methods
         public string Reverse(string textToReverse)
         {
-            textToReverse = Format(textToReverse, true);
+            string textToReverseTemp = Format(textToReverse, true);
+            
             //Reverse sentence
-            string[] splitted = textToReverse.Split(" ");
+            string[] splitted = textToReverseTemp.Split(" ");
             string[] punctuation = new string[splitted.Length];
-            for (int i = 0; i < splitted.Length; i++)
+            for (int i = 0; i < splitted.Length-1; i++)
             {
-                if (splitted[i].Contains(","))
+                foreach (char currentPunctuation in this.punctuations)
                 {
-                    punctuation[i + 1] = ",";
-                    splitted[i] = splitted[i].Remove(splitted[i].Length - 1, 1);
+                    if (splitted[i].Contains(currentPunctuation))
+                    {
+                        //add the current punctuation sign in the next array cell cause
+                        //read backward it will be in the right place
+                        punctuation[i + 1] = currentPunctuation.ToString();
+                        if (currentPunctuation == punctuations[0])
+                        {
+                            splitted[i] = Format(splitted[i], false);
+                        }
+                        splitted[i] = splitted[i].Remove(splitted[i].Length - 1, 1);
+                    }
                 }
-                if (splitted[i].Contains("."))
+
+                if (splitted[i].Contains(punctuations[0]))
                 {
-                    punctuation[i + 1] = ".";
-                    splitted[i] = Format(splitted[i], false);
+                    punctuation[i + 1] = punctuations[0].ToString();
+                    
                     splitted[i] = splitted[i].Remove(splitted[i].Length - 1, 1);
                 }
             }
@@ -30,7 +46,7 @@ namespace TextManager
             string empty = "";
             for (int i = splitted.Length -1; i >= 0; i--)
             {
-                if (punctuation[i] == ".")
+                if (punctuation[i] == punctuations[0].ToString())
                 {
                     splitted[i] = Format(splitted[i] + " ", true);
                 }
@@ -44,24 +60,31 @@ namespace TextManager
         #region private methods
         private string Format(string toFormat, bool lower)
         {
+            string toFormatTemp = toFormat;
+
+            //Remove extra space
+            toFormatTemp = toFormatTemp.Remove(toFormat.Length - 1, 1);
+
             if (lower)
             {
                 //Remove last dot, everything to lowerCase
-                toFormat = toFormat.Remove(toFormat.Length - 1, 1);
-                toFormat = char.ToLower(toFormat[0]) + toFormat;
-                toFormat = toFormat.Remove(1, 1);
+                toFormatTemp = char.ToLower(toFormatTemp[0]) + toFormatTemp;
             }
             else
-            {
-                //Remove extra space
-                toFormat = toFormat.Remove(toFormat.Length - 1, 1);
+            {               
                 //Add first letter capitalized
-                toFormat = char.ToUpper(toFormat[0]) + toFormat;
-                toFormat = toFormat.Remove(1, 1);
-                //Append dot
-                toFormat += ".";
+                toFormatTemp = char.ToUpper(toFormat[0]) + toFormatTemp;
             }
-            return toFormat;
+
+            toFormatTemp = toFormatTemp.Remove(1, 1);
+
+            if (!lower)
+            {
+                //Append dot
+                toFormatTemp += ".";
+            }
+
+            return toFormatTemp;
         }
         #endregion private methods
     }
