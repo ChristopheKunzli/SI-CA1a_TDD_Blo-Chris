@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace TextManager
 {
@@ -87,5 +88,17 @@ namespace TextManager
             return toFormatTemp;
         }
         #endregion private methods
+    }
+
+    public class TextImporter
+    {
+        #region public methods
+
+        public string Import(string filePath)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion public methods
     }
 }

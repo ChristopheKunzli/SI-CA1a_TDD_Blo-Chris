@@ -119,4 +119,38 @@ namespace TestTextManager
             Assert.AreEqual(expectedResult, actualResult);
         }
     }
+
+    public class TestTextImporter
+    {
+        #region private attributes
+        private TextImporter textImporter = null;
+        #endregion private attributes
+
+        [SetUp]
+        public void Setup()
+        {
+            this.textImporter = new TextImporter();
+        }
+
+        #region Single import
+        [Test]
+        public void T001_NominalCase_Success()
+        {
+            //given
+            string filePath = "..\\..\\..\\..\\testText\\T001.txt";
+            string expectedResult = "Il faut agir aussi vite que possible.";
+            string actualResult;
+
+            //when
+            actualResult = (this.textImporter.Import(filePath));
+
+            //then
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        #endregion Single import
+
+
+
+    }
 }
