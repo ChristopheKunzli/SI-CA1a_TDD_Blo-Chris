@@ -89,16 +89,4 @@ namespace TextManager
         }
         #endregion private methods
     }
-
-    public class TextImporter
-    {
-        #region public methods
-
-        public string Import(string filePath)
-        {
-            throw new NotImplementedException();
-        }
-
-        #endregion public methods
-    }
 }
