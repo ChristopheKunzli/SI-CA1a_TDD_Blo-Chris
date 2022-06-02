@@ -16,14 +16,16 @@ namespace TextManager
             string textToReverseTemp = Format(textToReverse, true);
             
             //Reverse sentence
-            string[] splitted = textToReverse.Split(" ");
+            string[] splitted = textToReverseTemp.Split(" ");
             string[] punctuation = new string[splitted.Length];
-            for (int i = 0; i < splitted.Length; i++)
+            for (int i = 0; i < splitted.Length-1; i++)
             {
                 foreach (char currentPunctuation in this.punctuations)
                 {
                     if (splitted[i].Contains(currentPunctuation))
                     {
+                        //add the current punctuation sign in the next array cell cause
+                        //read backward it will be in the right place
                         punctuation[i + 1] = currentPunctuation.ToString();
                         if (currentPunctuation == punctuations[0])
                         {
@@ -66,7 +68,6 @@ namespace TextManager
             if (lower)
             {
                 //Remove last dot, everything to lowerCase
-                toFormatTemp = toFormat.Remove(toFormatTemp.Length - 1, 1);
                 toFormatTemp = char.ToLower(toFormatTemp[0]) + toFormatTemp;
             }
             else
