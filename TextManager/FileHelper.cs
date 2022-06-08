@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.IO;
+
 
 namespace TextManager
 {
@@ -9,7 +11,23 @@ namespace TextManager
         #region public methods
         public string Import(string filePath)
         {
-            throw new NotImplementedException();
+            StreamReader Text;
+            string result = "";
+            try
+            {
+                using (Text = new StreamReader(filePath))
+                {
+                    result = Text.ReadToEnd();
+                }
+                Text.Close();
+
+                return result;
+            }
+            catch(Exception e) 
+            {
+                throw(e);
+            }
+            
         }
         #endregion public methods
     }
