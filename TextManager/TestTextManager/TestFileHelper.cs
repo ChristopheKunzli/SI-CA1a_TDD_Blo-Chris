@@ -14,7 +14,10 @@ namespace TestTextManager
         {
             this.fileHelper = new FileHelper();
         }
-
+        [TearDown]
+        public void Teardown() { 
+            this.fileHelper = null;
+        }
         #region Single import
         [Test]
         public void T001_NominalCase_Success()

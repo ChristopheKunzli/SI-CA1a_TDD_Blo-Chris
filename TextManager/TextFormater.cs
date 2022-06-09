@@ -8,10 +8,17 @@ namespace TextManager
     {
         #region private attributes
         private List<char> punctuations = new List<char>{ '.', ',' };
+        private List<char> special;
+        private List<string> swear_words;
         #endregion private attributes
 
-
         #region public methods
+        public TextFormater(List<string> dictionnary, List <char> specials)
+        {
+            this.swear_words = dictionnary;
+            this.special = specials;
+        }
+
         public string Reverse(string textToReverse)
         {
             string textToReverseTemp = Format(textToReverse, true);
@@ -56,6 +63,20 @@ namespace TextManager
             empty = Format(empty, false);
             return empty;
         }
+
+        public string CencorSwear(string toRemove)
+        {
+            string res = toRemove;
+            foreach (string word in this.swear_words)
+            {
+                string capsWord = char.ToUpper(word[0]) + word;
+                capsWord = capsWord.Remove(1, 1);
+                res = res.Replace(word, Stars(word));
+                res = res.Replace(capsWord, Stars(capsWord));
+            }
+
+            return res;
+        }
         #endregion public methods
 
         #region private methods
@@ -86,6 +107,18 @@ namespace TextManager
             }
 
             return toFormatTemp;
+        }
+        private string Stars(string word)
+        {
+            string res = "" + word[0];
+            for (int i = 0; i < word.Length - 1; i++)
+            {
+                var rand = new Random();
+                int index = rand.Next(this.special.Count);
+                res += this.special[index];
+            }
+
+            return res;
         }
         #endregion private methods
     }
