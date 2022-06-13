@@ -64,7 +64,7 @@ namespace TextManager
             return empty;
         }
 
-        public string CencorSwear(string toRemove)
+        public string CensorSwear(string toRemove)
         {
             string res = toRemove;
             foreach (string word in this.swear_words)

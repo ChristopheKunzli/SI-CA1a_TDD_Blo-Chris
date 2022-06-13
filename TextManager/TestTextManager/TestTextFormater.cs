@@ -23,7 +23,7 @@ namespace TestTextManager
 
         #region Single Sentence
         [Test]
-        public void CencorSwear_SimpleSwear_Success()
+        public void CensorSwear_SimpleSwear_Success()
         {
             //given
             string sentenceToReverse = "Du coup, il s'est fait niquer sa mère";
@@ -31,15 +31,12 @@ namespace TestTextManager
             string actualResult;
 
             //when
-            actualResult = (this.textFormater.CencorSwear(sentenceToReverse));
+            actualResult = (this.textFormater.CensorSwear(sentenceToReverse));
 
             //then
-            Assert.AreEqual(expectedResult.Substring(0, 24), sentenceToReverse.Substring(0, 24));
+            Assert.AreEqual(expectedResult.Substring(0, 24), actualResult.Substring(0, 24));
+            Assert.AreEqual(expectedResult.Substring(29, (expectedResult.Length-1)-29), actualResult.Substring(29, (sentenceToReverse.Length - 1)-29));
 
-
-            Assert.AreEqual(expectedResult.Substring(29, (expectedResult.Length-1)-29), sentenceToReverse.Substring(29, (sentenceToReverse.Length - 1)-29));
-
-            //Assert.AreEqual(expectedResult, actualResult);
             foreach (string word in dictionnary)
             {
                 Assert.False(actualResult.Contains(word));
@@ -47,37 +44,41 @@ namespace TestTextManager
         }
 
         [Test]
-        public void CencorSwear_MultipleSwear_Success()
+        public void CensorSwear_MultipleSwear_Success()
         {
 
             //given
             string sentenceToReverse = "Du coup, ta gueule il s'est fait niquer sa mère ta gueule";
-            int expectedResult = sentenceToReverse.Length;
+            string expectedResult = "Du coup, t________ il s'est fait n_____ sa mère t________";
             string actualResult;
-
             //when
-            actualResult = (this.textFormater.CencorSwear(sentenceToReverse));
+            actualResult = (this.textFormater.CensorSwear(sentenceToReverse));
 
             //then
-            Assert.AreEqual(expectedResult, actualResult.Length);
+            Assert.AreEqual(expectedResult.Substring(0, 10), actualResult.Substring(0, 10));
+            Assert.AreEqual(expectedResult.Substring(18, 16), actualResult.Substring(18, 16));
+            Assert.AreEqual(expectedResult.Substring(39, 10), actualResult.Substring(39, 10));
+
             foreach (string word in dictionnary)
             {
                 Assert.False(actualResult.Contains(word));
             }
         }
         [Test]
-        public void CencorSwear_FirstSwear_Success()
+        public void CensorSwear_FirstSwear_Success()
         {
             //given
             string sentenceToReverse = "Fils de pute, j'vais les manger !";
-            int expectedResult = sentenceToReverse.Length;
+            string expectedResult = "Fils de pute, j'vais les manger !";
             string actualResult;
 
             //when
-            actualResult = (this.textFormater.CencorSwear(sentenceToReverse));
+            actualResult = (this.textFormater.CensorSwear(sentenceToReverse));
 
             //then
-            Assert.AreEqual(expectedResult, actualResult.Length);
+            Assert.AreEqual(expectedResult.Substring(0,1), actualResult.Substring(0,1));
+            Assert.AreEqual(expectedResult.Substring(12, 21), actualResult.Substring(12, 21));
+
             foreach (string word in dictionnary)
             {
                 Assert.False(actualResult.Contains(word));
