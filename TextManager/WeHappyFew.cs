@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
@@ -6,8 +6,13 @@ using System.IO;
 
 namespace TextManager
 {
-    public class FileHelper
+    public class WeHappyFew
     {
+        #region private attributes
+        private FileHelper fileHelper = null;
+        private TextFormater textFormater = null;
+        #endregion private attributes
+
         #region public methods
         public string Import(string filePath)
         {
@@ -23,18 +28,10 @@ namespace TextManager
 
                 return result;
             }
-            catch(Exception e) 
+            catch (Exception e)
             {
-                throw(e);
+                throw (e);
             }
-            
-        }
-        public void Export(string filePath, string Text)
-        {
-            throw(new Exception());   
-
-
-
 
         }
         #endregion public methods
