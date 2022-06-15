@@ -69,7 +69,7 @@ namespace TestTextManager
         {
             //given
             string sentenceToReverse = "Fils de pute, j'vais les manger !";
-            string expectedResult = "Fils de pute, j'vais les manger !";
+            string expectedResult = "F___________, j'vais les manger !";
             string actualResult;
 
             //when
