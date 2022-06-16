@@ -29,10 +29,23 @@ namespace TextManager
             }
             
         }
-        public void Export(string filePath, string Text)
+        public void Export(string filePath, string textToWritte)
         {
-            throw(new Exception());   
+             StreamWriter Text;
+            try
+            {
+                using (Text = new StreamWriter(filePath))
+                {
+                   Text.Write(textToWritte);
+                }
+                Text.Close();
 
+                
+            }
+            catch(Exception e) 
+            {
+                throw(e);
+            }
 
 
 

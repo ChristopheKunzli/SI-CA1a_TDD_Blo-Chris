@@ -9,8 +9,8 @@ namespace TextManager
     public class WeHappyFew
     {
         #region private attributes
-        private FileHelper fileHelper = null;
-        private TextFormater textFormater = null;
+        //private FileHelper fileHelper = null;
+        //private TextFormater textFormater = null;
         #endregion private attributes
 
         #region public methods

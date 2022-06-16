@@ -37,15 +37,23 @@ namespace TestTextManager
        
         #region Single export
          [Test]
-        public void T001_NominalCase_Success()
+        public void T002_NominalCase_Success()
         {
             //given
             string filePath = "T001.txt";
-            string expectedResult = "Il faut agir aussi vite que possible.";
-            string actualResult;
+            string fileResult= "TResult.txt";
+            string TextExport ="Il faut agir aussi vite que possible.";
+            
+            string expectedResult = this.fileHelper.Import(fileResult);
+
+            
+
+
+            
 
             //when
-            this.fileHelper.Export(filePath, expectedResult);
+            this.fileHelper.Export(filePath, TextExport);
+            string actualResult = this.fileHelper.Import(filePath);
 
 
             //then
