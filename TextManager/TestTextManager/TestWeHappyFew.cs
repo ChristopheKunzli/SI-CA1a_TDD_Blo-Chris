@@ -40,14 +40,13 @@ namespace TestTextManager
             string expectedResult = this.fileHelper.Import("..\\..\\..\\..\\..\\text\\wehappy_T001_Res.txt");
             string actualResult;
 
-            string temp = "Il faut agir aussi vite que putain de possible.";
             //when
             weHappyFew.censor(filePath);
             actualResult = this.fileHelper.Import(filePath);
 
             //then
             Assert.AreEqual(expectedResult.Substring(0, 29), actualResult.Substring(0, 29));
-
+            Assert.AreEqual(expectedResult.Substring(34, expectedResult.Length-34), actualResult.Substring(34,actualResult.Length-34));
             //Assert.AreEqual(expectedResult, actualResult);
         }
         #endregion Censor
@@ -67,8 +66,6 @@ namespace TestTextManager
             actualResult = this.fileHelper.Import(filePath);
 
             //then
-
-
             Assert.AreEqual(expectedResult, actualResult);
         }
         #endregion reverse
