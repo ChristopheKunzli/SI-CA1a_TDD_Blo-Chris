@@ -28,11 +28,10 @@ namespace TextManager
         }
         public void reverse(string filePath)
         {
-            throw new NotImplementedException();
+            string imported = this.fileHelper.Import(filePath);
+            string reversed = this.textFormater.Reverse(imported);
+            this.fileHelper.Export(filePath, reversed);
         }
-
-
-
         #endregion public methods
     }
 }

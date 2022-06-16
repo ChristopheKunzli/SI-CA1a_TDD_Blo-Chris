@@ -63,7 +63,7 @@ namespace TestTextManager
 
             
             //when
-            weHappyFew.censor(filePath);
+            weHappyFew.reverse(filePath);
             actualResult = this.fileHelper.Import(filePath);
 
             //then
