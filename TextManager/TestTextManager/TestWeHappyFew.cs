@@ -47,7 +47,10 @@ namespace TestTextManager
             //then
             Assert.AreEqual(expectedResult.Substring(0, 29), actualResult.Substring(0, 29));
             Assert.AreEqual(expectedResult.Substring(34, expectedResult.Length-34), actualResult.Substring(34,actualResult.Length-34));
-            //Assert.AreEqual(expectedResult, actualResult);
+            string swear = actualResult.Substring(29, 5);
+            swear = swear.Remove(swear.IndexOf("*"));
+
+            
         }
         #endregion Censor
 
